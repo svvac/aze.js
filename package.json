@@ -1,0 +1,24 @@
+{
+  "name": "aze",
+  "version": "1.0.0",
+  "description": "Small utilities for javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/svvac/aze.js.git"
+  },
+  "keywords": [
+    "tools",
+    "utils",
+    "aze"
+  ],
+  "author": "svvac",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/svvac/aze.js/issues"
+  },
+  "homepage": "https://github.com/svvac/aze.js#readme"
+}
