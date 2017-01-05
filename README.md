@@ -61,3 +61,9 @@ Call the `.feed()` method to push data.
     // If `repeat` were set on buf, it would yield:
     // 50 bytes before yolo. 26 remaining
 
+### `StateMachine`
+Base implementation for easily creating state machine-based systems.
+
+See [the repo](https://github.com/svvac/aze.state-machine.js) for more info.
+
+
