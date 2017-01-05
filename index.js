@@ -21,5 +21,5 @@
  */
 
 module.exports = {
-    get: require('./src/get'),
+    get: require('./get'),
 };
