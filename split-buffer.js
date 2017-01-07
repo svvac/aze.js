@@ -21,13 +21,14 @@
  */
 
 class SplitBuffer {
-    constructor(guard, callback, repeat) {
+    constructor(guard, callback, repeat, trim) {
         this.guard = guard;
         this.buf = Buffer.alloc(0);
         this.cb = callback;
         this.offset = 0;
         this.repeat = !!repeat;
         this.done = false;
+        this.trim = Boolean(trim);
     }
 
     feed(data) {
@@ -42,9 +43,9 @@ class SplitBuffer {
 
         let idx = this.buf.indexOf(this.guard, this.offset);
         if (idx > -1) {
-            idx += this.guard.length;
-            const slice = this.buf.slice(0, idx);
-            const leftover = this.buf.slice(idx);
+            if (!this.trim) idx += this.guard.length;
+            const slice = this.buf.slice(0, this.trim ? idx : idx + this.guard.length);
+            const leftover = this.buf.slice(idx + this.guard.length);
 
             this.buf = leftover;
             this.offset = 0;
@@ -52,7 +53,9 @@ class SplitBuffer {
             setImmediate(() => this.cb(slice, leftover));
 
             if (this.repeat) {
-                setImmediate(() => this.feed());
+                if (this.offset < this.buf.length) {
+                    setImmediate(() => this.feed());
+                }
             } else {
                 this.done = true;
             }
