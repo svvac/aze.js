@@ -44,8 +44,8 @@ class SplitBuffer {
         let idx = this.buf.indexOf(this.guard, this.offset);
         if (idx > -1) {
             if (!this.trim) idx += this.guard.length;
-            const slice = this.buf.slice(0, this.trim ? idx : idx + this.guard.length);
-            const leftover = this.buf.slice(idx + this.guard.length);
+            const slice = this.buf.slice(0, this.trim ? idx : idx + this.guard.length - 1);
+            const leftover = this.buf.slice(idx + this.guard.length - 1);
 
             this.buf = leftover;
             this.offset = 0;
